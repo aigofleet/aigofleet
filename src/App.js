@@ -77,6 +77,16 @@ export default function App() {
                 Vezi detalii
               </a>
             </div>
+          
+            <div className="bg-gray-100 p-4 rounded shadow flex flex-col items-center">
+              <img src="/DSC06968.JPG" alt="AIGO T2" className="rounded mb-2 h-40 object-cover" />
+              <h3 className="font-semibold text-lg text-primary">AIGO T2</h3>
+              <p className="text-sm text-gray-600">Autonomie: 80–100km | 200 RON/zi</p>
+              <a href="#detalii-aigo-t2" className="mt-2 text-sm text-primary hover:underline">
+                Vezi detalii
+              </a>
+            </div>
+
           </div>
         </section>
 
@@ -120,8 +130,43 @@ export default function App() {
             <p><strong>Locuri:</strong> 2</p>
             <p><strong>Cutie:</strong> automată</p>
             <p><strong>Culoare:</strong> alb-crem</p>
+          
+            <div className="bg-gray-100 p-4 rounded shadow flex flex-col items-center">
+              <img src="/DSC06968.JPG" alt="AIGO T2" className="rounded mb-2 h-40 object-cover" />
+              <h3 className="font-semibold text-lg text-primary">AIGO T2</h3>
+              <p className="text-sm text-gray-600">Autonomie: 80–100km | 200 RON/zi</p>
+              <a href="#detalii-aigo-t2" className="mt-2 text-sm text-primary hover:underline">
+                Vezi detalii
+              </a>
+            </div>
+
           </div>
         </section>
+      
+        {/* AIGO T2 – Detalii și Galerie */}
+        <section id="detalii-aigo-t2" className="bg-white py-16 px-4 text-center">
+          <h2 className="text-2xl font-bold text-primary mb-4">AIGO T2 – Pick-up Electric</h2>
+          <p className="max-w-2xl mx-auto text-gray-700 mb-8">
+            AIGO T2 este vehiculul ideal pentru transport urban. Cu o sarcină admisă de 390 kg și autonomie de până la 100 km, este perfect pentru livrări rapide sau sarcini voluminoase de oraș.
+          </p>
+          <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+            <img src="/DSC06968.JPG" alt="AIGO T2 - 1" className="rounded shadow" />
+            <img src="/DSC06992.JPG" alt="AIGO T2 - 2" className="rounded shadow" />
+            <img src="/DSC07012.JPG" alt="AIGO T2 - 3" className="rounded shadow" />
+            <img src="/DSC07058.JPG" alt="AIGO T2 - 4" className="rounded shadow" />
+            <img src="/DSC07081.JPG" alt="AIGO T2 - 5" className="rounded shadow" />
+            <img src="/DSC07096.JPG" alt="AIGO T2 - 6" className="rounded shadow" />
+          </div>
+          <div className="text-left max-w-md mx-auto text-gray-800">
+            <p><strong>Autonomie:</strong> 80–100 km (cu sarcină maximă)</p>
+            <p><strong>Preț:</strong> 200 RON / zi</p>
+            <p><strong>Locuri:</strong> 2</p>
+            <p><strong>Sarcină admisă:</strong> 390 kg</p>
+            <p><strong>Cutie:</strong> automată</p>
+            <p><strong>Culoare:</strong> alb</p>
+          </div>
+        </section>
+
       </main>
     </div>
   );
