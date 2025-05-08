@@ -42,29 +42,23 @@ export default function App() {
     const email = formData.get("email");
     const car = formData.get("masina");
 
-    try {
-      const res = await fetch("https://aigofleet-backend.onrender.com/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, car }),
-      });
+    const res = await fetch("https://aigofleet-backend.onrender.com/create-checkout-session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, car }),
+    });
 
-      const data = await res.json();
-      console.log("Răspuns Stripe:", data);
-
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        alert("Eroare la inițializarea plății.");
-      }
-    } catch (err) {
-      console.error("Eroare la fetch:", err);
-      alert("A apărut o eroare la conectarea cu serverul.");
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert("Eroare la inițializarea plății.");
     }
   };
 
   return (
     <main className="font-sans bg-white text-gray-900">
+      {/* Păstrează aici restul componentelor site-ului tău exact cum le aveai înainte */}
       <section id="rezervare" className="bg-background py-16 px-4 text-center">
         <h2 className="text-2xl font-bold text-primary mb-8">{t.reserve}</h2>
         <form onSubmit={handlePayment} className="max-w-md mx-auto bg-white p-6 rounded shadow space-y-4">
