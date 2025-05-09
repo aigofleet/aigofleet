@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 
 const translations = {
@@ -79,51 +78,41 @@ export default function App() {
         </div>
       </section>
 
-      <section id="despre" className="bg-background py-16 px-4 text-center">
-        <h2 className="text-3xl font-bold text-primary mb-4">Despre AIGO FLEET</h2>
-        <p className="max-w-3xl mx-auto text-gray-800 text-lg leading-relaxed">
-          AIGO FLEET este un serviciu modern de închirieri auto electrice, creat pentru cei care își doresc mobilitate rapidă, sustenabilă și accesibilă.
-          <br /><br />
-          Ne propunem să simplificăm accesul la vehicule electrice printr-o platformă intuitivă, transparentă și sigură.
-          Cu o flotă variată de mașini electrice și suport rapid, te ajutăm să ajungi unde ai nevoie, fără compromisuri.
-        </p>
+      <section id="detalii-baw" className="bg-white py-12 px-4 text-center">
+        <h2 className="text-xl font-bold text-primary mb-4">BAW PONY</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
+          <img src="/IMG_9489.jpg" className="rounded shadow" />
+          <img src="/IMG_9492.jpg" className="rounded shadow" />
+          <img src="/IMG_9515.jpg" className="rounded shadow" />
+          <img src="/NO2.jpg" className="rounded shadow" />
+          <img src="/NO4.jpg" className="rounded shadow" />
+          <img src="/NO5.jpg" className="rounded shadow" />
+        </div>
       </section>
 
-<section id="detalii-baw" className="bg-white py-12 px-4 text-center">
-  <h2 className="text-xl font-bold text-primary mb-4">BAW PONY</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
-    <img src="/IMG_9489.jpg" className="rounded shadow" />
-    <img src="/IMG_9492.jpg" className="rounded shadow" />
-    <img src="/IMG_9515.jpg" className="rounded shadow" />
-    <img src="/NO2.jpg" className="rounded shadow" />
-    <img src="/NO4.jpg" className="rounded shadow" />
-    <img src="/NO5.jpg" className="rounded shadow" />
-  </div>
-</section>
+      <section id="detalii-m1" className="bg-white py-12 px-4 text-center">
+        <h2 className="text-xl font-bold text-primary mb-4">AIGO M1</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
+          <img src="/IMG_1241.JPG" className="rounded shadow" />
+          <img src="/IMG_1261.JPG" className="rounded shadow" />
+          <img src="/IMG_1265.JPG" className="rounded shadow" />
+          <img src="/IMG_1311.JPG" className="rounded shadow" />
+          <img src="/IMG_1366.JPG" className="rounded shadow" />
+          <img src="/IMG_1286.JPG" className="rounded shadow" />
+        </div>
+      </section>
 
-<section id="detalii-m1" className="bg-white py-12 px-4 text-center">
-  <h2 className="text-xl font-bold text-primary mb-4">AIGO M1</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
-    <img src="/IMG_1241.JPG" className="rounded shadow" />
-    <img src="/IMG_1261.JPG" className="rounded shadow" />
-    <img src="/IMG_1265.JPG" className="rounded shadow" />
-    <img src="/IMG_1311.JPG" className="rounded shadow" />
-    <img src="/IMG_1366.JPG" className="rounded shadow" />
-    <img src="/IMG_1286.JPG" className="rounded shadow" />
-  </div>
-</section>
-
-<section id="detalii-t2" className="bg-white py-12 px-4 text-center">
-  <h2 className="text-xl font-bold text-primary mb-4">AIGO T2</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
-    <img src="/DSC06968.JPG" className="rounded shadow" />
-    <img src="/DSC06992.JPG" className="rounded shadow" />
-    <img src="/DSC07012.JPG" className="rounded shadow" />
-    <img src="/DSC07058.JPG" className="rounded shadow" />
-    <img src="/DSC07081.JPG" className="rounded shadow" />
-    <img src="/DSC07096.JPG" className="rounded shadow" />
-  </div>
-</section>
+      <section id="detalii-t2" className="bg-white py-12 px-4 text-center">
+        <h2 className="text-xl font-bold text-primary mb-4">AIGO T2</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
+          <img src="/DSC06968.JPG" className="rounded shadow" />
+          <img src="/DSC06992.JPG" className="rounded shadow" />
+          <img src="/DSC07012.JPG" className="rounded shadow" />
+          <img src="/DSC07058.JPG" className="rounded shadow" />
+          <img src="/DSC07081.JPG" className="rounded shadow" />
+          <img src="/DSC07096.JPG" className="rounded shadow" />
+        </div>
+      </section>
 
       <section id="contact" className="bg-white py-16 px-4 text-center">
         <h2 className="text-2xl font-bold text-primary mb-8">{t.contact}</h2>
