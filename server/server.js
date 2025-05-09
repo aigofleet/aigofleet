@@ -9,13 +9,14 @@ app.use(express.json());
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
+// Debugging: Verificăm cheia Stripe
+console.log("Stripe Secret Key:", process.env.STRIPE_SECRET_KEY);
+
 app.post("/create-checkout-session", async (req, res) => {
   const { car, email, price } = req.body;
 
-  // Logăm datele primite de la frontend
   console.log("Date primite de la frontend:", req.body);
 
-  // Verificăm dacă prețul este valid
   if (!price || typeof price !== "number") {
     return res.status(400).json({ error: "Price invalid sau lipsă din request." });
   }
@@ -30,7 +31,7 @@ app.post("/create-checkout-session", async (req, res) => {
           price_data: {
             currency: "ron",
             product_data: { name: `Rezervare ${car}` },
-            unit_amount: price * 100, // Stripe așteaptă valoarea în bani mici (ex: 2400 = 24.00 lei)
+            unit_amount: price * 100,
           },
           quantity: 1,
         },
@@ -42,7 +43,6 @@ app.post("/create-checkout-session", async (req, res) => {
     console.log("✅ Sesiune Stripe creată:", session.url);
     res.json({ url: session.url });
   } catch (err) {
-    // Logăm eroarea Stripe
     console.error("Eroare Stripe:", err.message);
     res.status(500).json({ error: "Eroare Stripe: " + err.message });
   }
