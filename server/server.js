@@ -4,12 +4,16 @@ const Stripe = require("stripe");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
+
+// ✅ Permitem atât localhost:3000 cât și Netlify
+app.use(cors({
+  origin: ["http://localhost:3000", "https://aigofleet.netlify.app"]
+}));
+
 app.use(express.json());
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Debugging: Verificăm cheia Stripe
 console.log("Stripe Secret Key:", process.env.STRIPE_SECRET_KEY);
 
 app.post("/create-checkout-session", async (req, res) => {
