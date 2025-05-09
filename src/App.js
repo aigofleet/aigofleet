@@ -18,7 +18,7 @@ export default function App() {
     dateEnd: "Data sfârșit",
     paymentMethod: "Metodă de plată",
     card: "Card",
-    cash: "Cash la unitate"
+    cash: "Cash / la unitate"
   };
 
   useEffect(() => {
@@ -49,9 +49,14 @@ export default function App() {
     const zile =
       (new Date(dataEnd) - new Date(dataStart)) / (1000 * 60 * 60 * 24) + 1;
 
+    const endpoint =
+      window.location.hostname === "localhost"
+        ? "http://localhost:4242/create-checkout-session"
+        : "https://aigofleet-backend.onrender.com/create-checkout-session";
+
     if (paymentMethod === "card") {
       try {
-        const res = await fetch("http://localhost:4242/create-checkout-session", {
+        const res = await fetch(endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, car: masina, price }),
@@ -101,85 +106,32 @@ export default function App() {
           onSubmit={handleSubmit}
           className="max-w-md mx-auto bg-white p-6 rounded shadow space-y-4"
         >
-          <input
-            type="text"
-            name="nume"
-            placeholder="Nume complet"
-            required
-            className="w-full p-2 border rounded"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-            className="w-full p-2 border rounded"
-          />
-          <input
-            type="date"
-            name="dataStart"
-            required
-            className="w-full p-2 border rounded"
-            value={dataStart}
-            onChange={(e) => setDataStart(e.target.value)}
-          />
-          <input
-            type="date"
-            name="dataEnd"
-            required
-            className="w-full p-2 border rounded"
-            value={dataEnd}
-            onChange={(e) => setDataEnd(e.target.value)}
-          />
-          <select
-            name="masina"
-            required
-            className="w-full p-2 border rounded"
-            value={car}
-            onChange={(e) => setCar(e.target.value)}
-          >
+          <input type="text" name="nume" placeholder="Nume complet" required className="w-full p-2 border rounded" />
+          <input type="email" name="email" placeholder="Email" required className="w-full p-2 border rounded" />
+          <input type="date" name="dataStart" required className="w-full p-2 border rounded" value={dataStart} onChange={(e) => setDataStart(e.target.value)} />
+          <input type="date" name="dataEnd" required className="w-full p-2 border rounded" value={dataEnd} onChange={(e) => setDataEnd(e.target.value)} />
+          <select name="masina" required className="w-full p-2 border rounded" value={car} onChange={(e) => setCar(e.target.value)}>
             <option value="">Selectează o mașină</option>
             <option value="BAW PONY">BAW PONY</option>
             <option value="AIGO M1">AIGO M1</option>
             <option value="AIGO T2">AIGO T2</option>
           </select>
-
           <div className="text-left">
             <label className="font-semibold block mb-2">{t.paymentMethod}:</label>
             <label className="inline-flex items-center mr-4">
-              <input
-                type="radio"
-                name="payment"
-                value="card"
-                checked={paymentMethod === "card"}
-                onChange={() => setPaymentMethod("card")}
-              />
+              <input type="radio" name="payment" value="card" checked={paymentMethod === "card"} onChange={() => setPaymentMethod("card")} />
               <span className="ml-2">{t.card}</span>
             </label>
             <label className="inline-flex items-center">
-              <input
-                type="radio"
-                name="payment"
-                value="cash"
-                checked={paymentMethod === "cash"}
-                onChange={() => setPaymentMethod("cash")}
-              />
+              <input type="radio" name="payment" value="cash" checked={paymentMethod === "cash"} onChange={() => setPaymentMethod("cash")} />
               <span className="ml-2">{t.cash}</span>
             </label>
           </div>
-
           {price > 0 && (
             <div className="text-left font-semibold">Preț total: {price} lei</div>
           )}
-
-          <button
-            type="submit"
-            className="bg-primary text-white py-2 px-4 rounded hover:opacity-90"
-          >
-            {t.submit}
-          </button>
+          <button type="submit" className="bg-primary text-white py-2 px-4 rounded hover:opacity-90">{t.submit}</button>
         </form>
-
         {confirmMsg && (
           <div className="mt-4 p-3 bg-green-100 text-green-800 rounded">
             {confirmMsg}
