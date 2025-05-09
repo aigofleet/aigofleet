@@ -12,15 +12,6 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 app.post("/create-checkout-session", async (req, res) => {
   const { car, email, price } = req.body;
 
-  console.log("🔔 Cerere Stripe primită:");
-  console.log("Car:", car);
-  console.log("Email:", email);
-  console.log("Price primit din frontend:", price);
-
-  if (!price || typeof price !== "number") {
-    return res.status(400).json({ error: "Price invalid sau lipsă din request." });
-  }
-
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -40,10 +31,8 @@ app.post("/create-checkout-session", async (req, res) => {
       cancel_url: "https://aigofleet.netlify.app/anulare",
     });
 
-    console.log("✅ Sesiune Stripe creată:", session.url);
     res.json({ url: session.url });
   } catch (err) {
-    console.error("❌ Eroare Stripe:", err.message);
     res.status(500).json({ error: err.message });
   }
 });
