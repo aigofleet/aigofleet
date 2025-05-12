@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 
 const translations = {
   ro: {
@@ -40,7 +39,7 @@ export default function App() {
           <a href="#despre" className="hover:underline">{t.nav.about}</a>
           <a href="#masini" className="hover:underline">{t.nav.cars}</a>
           <a href="#contact" className="hover:underline">{t.nav.contact}</a>
-          <Link to="/rezervare" className="bg-primary text-white px-3 py-1 rounded">{t.nav.reserve}</Link>
+          <a href="/rezervare" className="bg-primary text-white px-3 py-1 rounded">{t.nav.reserve}</a>
           <button onClick={toggleLang} className="ml-2 underline text-primary">{t.nav.lang}</button>
         </nav>
       </header>
@@ -51,9 +50,9 @@ export default function App() {
       </section>
 
       <section className="text-center mb-10">
-        <Link to="/rezervare" className="inline-block bg-primary text-white text-lg font-semibold py-3 px-6 rounded shadow hover:opacity-90 transition">
+        <a href="/rezervare" className="inline-block bg-primary text-white text-lg font-semibold py-3 px-6 rounded shadow hover:opacity-90 transition">
           🚗 {t.reserve}
-        </Link>
+        </a>
       </section>
 
       <section id="masini" className="py-10 text-center">
