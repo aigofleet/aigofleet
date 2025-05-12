@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const translations = {
   ro: {
@@ -23,6 +22,7 @@ const translations = {
 
 export default function App() {
   const [lang, setLang] = useState("ro");
+  const [menuOpen, setMenuOpen] = useState(false);
   const t = translations[lang];
 
   useEffect(() => {
@@ -31,18 +31,31 @@ export default function App() {
   }, []);
 
   const toggleLang = () => setLang(lang === "ro" ? "en" : "ro");
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
     <main className="font-sans bg-white text-gray-900">
-      <header className="flex justify-between items-center px-4 py-2 border-b">
-        <h1 className="text-xl font-bold text-primary">AIGO</h1>
-        <nav className="space-x-4 text-sm">
-          <a href="#despre" className="hover:underline">{t.nav.about}</a>
-          <a href="#masini" className="hover:underline">{t.nav.cars}</a>
-          <a href="#contact" className="hover:underline">{t.nav.contact}</a>
-          <Link to="/rezervare" className="bg-primary text-white px-3 py-1 rounded">{t.nav.reserve}</Link>
-          <button onClick={toggleLang} className="ml-2 underline text-primary">{t.nav.lang}</button>
-        </nav>
+      <header className="border-b">
+        <div className="flex justify-between items-center px-4 py-2">
+          <h1 className="text-xl font-bold text-primary">AIGO</h1>
+          <button className="md:hidden text-primary text-2xl" onClick={toggleMenu}>☰</button>
+          <nav className="hidden md:flex space-x-4 text-sm">
+            <a href="#despre" className="hover:underline">{t.nav.about}</a>
+            <a href="#masini" className="hover:underline">{t.nav.cars}</a>
+            <a href="#contact" className="hover:underline">{t.nav.contact}</a>
+            <Link to="/rezervare" className="bg-primary text-white px-3 py-1 rounded">{t.nav.reserve}</Link>
+            <button onClick={toggleLang} className="underline text-primary">{t.nav.lang}</button>
+          </nav>
+        </div>
+        {menuOpen && (
+          <div className="md:hidden flex flex-col space-y-2 px-4 pb-4 text-sm">
+            <a href="#despre" className="hover:underline" onClick={toggleMenu}>{t.nav.about}</a>
+            <a href="#masini" className="hover:underline" onClick={toggleMenu}>{t.nav.cars}</a>
+            <a href="#contact" className="hover:underline" onClick={toggleMenu}>{t.nav.contact}</a>
+            <Link to="/rezervare" className="bg-primary text-white px-3 py-1 rounded" onClick={toggleMenu}>{t.nav.reserve}</Link>
+            <button onClick={() => { toggleLang(); toggleMenu(); }} className="underline text-primary">{t.nav.lang}</button>
+          </div>
+        )}
       </header>
 
       <section id="intro" className="bg-background py-16 px-4 text-center">
@@ -50,15 +63,16 @@ export default function App() {
         <p className="max-w-xl mx-auto text-gray-800 text-lg">{t.about}</p>
       </section>
 
-      <section className="text-center mb-10">
-        <Link to="/rezervare" className="inline-block bg-primary text-white text-lg font-semibold py-3 px-6 rounded shadow hover:opacity-90 transition">
+      <section className="text-center my-10 px-4">
+        <Link to="/rezervare" className="inline-block bg-primary text-white text-lg font-semibold py-3 px-6 rounded shadow transform transition-transform duration-300 hover:scale-105 hover:bg-primary/90 w-full sm:w-auto">
           🚗 {t.reserve}
         </Link>
       </section>
 
-      <section id="masini" className="py-10 text-center">
+      
+      <section id="masini" className="py-10 text-center px-4">
         <h1 className="text-3xl font-bold text-primary mb-4">{t.available}</h1>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           <div className="bg-gray-100 p-4 rounded shadow flex flex-col items-center">
             <img src="/IMG_9489.jpg" alt="BAW PONY" className="rounded mb-2 h-40 object-cover" />
             <h3 className="font-semibold text-lg text-primary">BAW PONY</h3>
@@ -80,53 +94,83 @@ export default function App() {
         </div>
       </section>
 
+      
       <section id="despre" className="bg-background py-16 px-4 text-center">
         <h2 className="text-3xl font-bold text-primary mb-4">Despre AIGO FLEET</h2>
         <p className="max-w-3xl mx-auto text-gray-800 text-lg leading-relaxed">
-          AIGO FLEET este un serviciu modern de închirieri auto electrice, creat pentru cei care își doresc mobilitate rapidă, sustenabilă și accesibilă.
-          <br /><br />
-          Ne propunem să simplificăm accesul la vehicule electrice printr-o platformă intuitivă, transparentă și sigură.
+          AIGO FLEET este un serviciu modern de închirieri auto electrice, creat pentru cei care își doresc mobilitate rapidă, sustenabilă și accesibilă.<br /><br />
+          Ne propunem să simplificăm accesul la vehicule electrice printr-o platformă intuitivă, transparentă și sigură.<br />
           Cu o flotă variată de mașini electrice și suport rapid, te ajutăm să ajungi unde ai nevoie, fără compromisuri.
         </p>
       </section>
 
-<section id="detalii-baw" className="bg-white py-12 px-4 text-center">
-  <h2 className="text-xl font-bold text-primary mb-4">BAW PONY</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
-    <img src="/IMG_9489.jpg" className="rounded shadow" />
-    <img src="/IMG_9492.jpg" className="rounded shadow" />
-    <img src="/IMG_9515.jpg" className="rounded shadow" />
-    <img src="/NO2.jpg" className="rounded shadow" />
-    <img src="/NO4.jpg" className="rounded shadow" />
-    <img src="/NO5.jpg" className="rounded shadow" />
-  </div>
-</section>
+      
 
-<section id="detalii-m1" className="bg-white py-12 px-4 text-center">
-  <h2 className="text-xl font-bold text-primary mb-4">AIGO M1</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
-    <img src="/IMG_1241.JPG" className="rounded shadow" />
-    <img src="/IMG_1261.JPG" className="rounded shadow" />
-    <img src="/IMG_1265.JPG" className="rounded shadow" />
-    <img src="/IMG_1311.JPG" className="rounded shadow" />
-    <img src="/IMG_1366.JPG" className="rounded shadow" />
-    <img src="/IMG_1286.JPG" className="rounded shadow" />
-  </div>
-</section>
+      <section id="detalii-baw" className="bg-white py-12 px-4 text-center">
+        <h2 className="text-xl font-bold text-primary mb-4">BAW PONY</h2>
+        <p className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-8">
+          Agil și eficient – BAW PONY este alegerea ideală pentru deplasări zilnice în oraș.<br />
+          Are <strong>2 locuri</strong>, un <strong>range urban de până la 240 km</strong> și timp de încărcare completă de la 0% în:<br />
+          <strong>doar 20 de minute la stațiile de încărcare DC</strong> sau <strong>60 de minute la cele AC</strong>.<br />
+          Designul compact îl face perfect pentru parcări înguste și trafic aglomerat.<br />
+          Ideal pentru cupluri sau navete scurte.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
+          <img src="/IMG_9489.jpg" className="rounded shadow" />
+          <img src="/IMG_9492.jpg" className="rounded shadow" />
+          <img src="/IMG_9515.jpg" className="rounded shadow" />
+          <img src="/NO2.jpg" className="rounded shadow" />
+          <img src="/NO4.jpg" className="rounded shadow" />
+          <img src="/NO5.jpg" className="rounded shadow" />
+        </div>
+      </section>
 
-<section id="detalii-t2" className="bg-white py-12 px-4 text-center">
-  <h2 className="text-xl font-bold text-primary mb-4">AIGO T2</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
-    <img src="/DSC06968.JPG" className="rounded shadow" />
-    <img src="/DSC06992.JPG" className="rounded shadow" />
-    <img src="/DSC07012.JPG" className="rounded shadow" />
-    <img src="/DSC07058.JPG" className="rounded shadow" />
-    <img src="/DSC07081.JPG" className="rounded shadow" />
-    <img src="/DSC07096.JPG" className="rounded shadow" />
-  </div>
-</section>
+      <section id="detalii-m1" className="bg-white py-12 px-4 text-center">
+        <h2 className="text-xl font-bold text-primary mb-4">AIGO M1</h2>
+        <p className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-8">
+          Spațios și urban-ready – AIGO M1 oferă <strong>4 locuri confortabile</strong> într-o caroserie modernă și eficientă.<br />
+          Autonomie de <strong>222 km</strong> pentru oraș și încărcare completă de la 0% în:<br />
+          <strong>doar 20 de minute la stațiile de încărcare DC</strong> sau <strong>60 de minute la cele AC</strong>.<br />
+          Este combinația ideală între economie, spațiu și mobilitate.<br />
+          Recomandat pentru familii mici, city trips sau business travel sustenabil.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
+          <img src="/IMG_1241.JPG" className="rounded shadow" />
+          <img src="/IMG_1261.JPG" className="rounded shadow" />
+          <img src="/IMG_1265.JPG" className="rounded shadow" />
+          <img src="/IMG_1311.JPG" className="rounded shadow" />
+          <img src="/IMG_1366.JPG" className="rounded shadow" />
+          <img src="/IMG_1286.JPG" className="rounded shadow" />
+        </div>
+      </section>
 
-      <section id="contact" className="bg-white py-16 px-4 text-center">
+      <section id="detalii-t2" className="bg-white py-12 px-4 text-center">
+        <h2 className="text-xl font-bold text-primary mb-4">AIGO T2</h2>
+        <p className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-8">
+          Compact, versatil și gata de treabă – AIGO T2 este vehiculul ideal pentru livrări urbane sau transport ușor.<br />
+          Are <strong>1 loc</strong>, <strong>2 uși</strong> și un <strong>range urban de 100 km</strong> chiar și cu sarcină maximă.<br />
+          Poate transporta până la <strong>390 kg</strong> fără efort.<br />
+          Încărcare completă de la 0% în <strong>doar 20 de minute la stațiile DC</strong> sau <strong>60 de minute la stațiile AC</strong>.<br />
+          Partenerul perfect pentru firme mici, curieri sau logistică eco.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
+          <img src="/DSC06968.JPG" className="rounded shadow" />
+          <img src="/DSC06992.JPG" className="rounded shadow" />
+          <img src="/DSC07012.JPG" className="rounded shadow" />
+          <img src="/DSC07058.JPG" className="rounded shadow" />
+          <img src="/DSC07081.JPG" className="rounded shadow" />
+          <img src="/DSC07096.JPG" className="rounded shadow" />
+        </div>
+      </section>
+
+
+      <section className="text-center my-12 px-4">
+        <Link to="/rezervare" className="inline-block bg-primary text-white text-lg font-semibold py-3 px-6 rounded shadow transform transition-transform duration-300 hover:scale-105 hover:bg-primary/90 w-full sm:w-auto">
+          🚘 {t.reserve}
+        </Link>
+      </section>
+
+<section id="contact" className="bg-white py-16 px-4 text-center">
         <h2 className="text-2xl font-bold text-primary mb-8">{t.contact}</h2>
         <div className="max-w-xl mx-auto text-gray-700 space-y-3 text-sm leading-relaxed">
           <p><strong>Adresă:</strong> Str. Santuhalm, nr. 35A, Deva, Romania</p>
@@ -152,6 +196,7 @@ export default function App() {
           </div>
         </div>
       </footer>
+
     </main>
   );
 }
