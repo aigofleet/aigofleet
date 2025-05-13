@@ -156,6 +156,18 @@ export default function Rezervare() {
       {confirmMsg && (
         <div className="mt-4 p-3 bg-green-100 text-green-800 rounded">{confirmMsg}</div>
       )}
+
+<section className="py-10 px-4 text-center">
+  <h2 className="text-2xl font-bold text-primary mb-4">Locații preluare mașini</h2>
+  <p className="text-gray-700 mb-4">După rezervare, poți prelua mașina din oricare dintre aceste locații:</p>
+  <ul className="space-y-2 text-sm text-blue-600 underline">
+    <li><a href="https://maps.app.goo.gl/UBQnH7kzRC5pEVLKA" target="_blank" rel="noopener noreferrer">Locație 1 - Google Maps</a></li>
+    <li><a href="https://maps.app.goo.gl/jeA3F2Sp2DTcU4Ta8" target="_blank" rel="noopener noreferrer">Locație 2 - Google Maps</a></li>
+    <li><a href="https://maps.app.goo.gl/ecacoCiTYjDnZDWT7" target="_blank" rel="noopener noreferrer">Locație 3 - Google Maps</a></li>
+  </ul>
+</section>
+
+
     </main>
   );
 }

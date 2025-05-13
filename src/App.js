@@ -109,11 +109,10 @@ export default function App() {
       <section id="detalii-baw" className="bg-white py-12 px-4 text-center">
         <h2 className="text-xl font-bold text-primary mb-4">BAW PONY</h2>
         <p className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-8">
-          Agil și eficient – BAW PONY este alegerea ideală pentru deplasări zilnice în oraș.<br />
-          Are <strong>2 locuri</strong>, un <strong>range urban de până la 240 km</strong> și timp de încărcare completă de la 0% în:<br />
-          <strong>doar 20 de minute la stațiile de încărcare DC</strong> sau <strong>60 de minute la cele AC</strong>.<br />
-          Designul compact îl face perfect pentru parcări înguste și trafic aglomerat.<br />
-          Ideal pentru cupluri sau navete scurte.
+          Agil și eficient, BAW PONY e ideal pentru oraș:
+<strong> 2 locuri</strong>, <strong>autonomie până la 240 km</strong>, <strong>încărcare rapidă</strong> — <strong>20 min DC</strong> sau <strong>60 min AC</strong>.<br />
+Dotat cu <strong>camere 360°</strong>, <strong>navigație</strong> și <strong>screen mirroring</strong>.<br />
+Perfect pentru trafic urban și parcări înguste. Ideal pentru cupluri sau navete scurte.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
           <img src="/IMG_9489.jpg" className="rounded shadow" />
@@ -128,11 +127,9 @@ export default function App() {
       <section id="detalii-m1" className="bg-white py-12 px-4 text-center">
         <h2 className="text-xl font-bold text-primary mb-4">AIGO M1</h2>
         <p className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-8">
-          Spațios și urban-ready – AIGO M1 oferă <strong>4 locuri confortabile</strong> într-o caroserie modernă și eficientă.<br />
-          Autonomie de <strong>222 km</strong> pentru oraș și încărcare completă de la 0% în:<br />
-          <strong>doar 20 de minute la stațiile de încărcare DC</strong> sau <strong>60 de minute la cele AC</strong>.<br />
-          Este combinația ideală între economie, spațiu și mobilitate.<br />
-          Recomandat pentru familii mici, city trips sau business travel sustenabil.
+          Confort urban cu AIGO M1:
+<strong> 4 locuri</strong>, <strong>autonomie de 222 km</strong> și <strong>încărcare completă</strong> în <strong>20 min DC</strong> sau <strong>60 min AC</strong>.<br />
+Spațios, eficient și prietenos cu orașul. Excelent pentru familii sau călătorii business eco.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
           <img src="/IMG_1241.JPG" className="rounded shadow" />
@@ -147,11 +144,10 @@ export default function App() {
       <section id="detalii-t2" className="bg-white py-12 px-4 text-center">
         <h2 className="text-xl font-bold text-primary mb-4">AIGO T2</h2>
         <p className="max-w-3xl mx-auto text-gray-700 text-lg leading-relaxed mb-8">
-          Compact, versatil și gata de treabă – AIGO T2 este vehiculul ideal pentru livrări urbane sau transport ușor.<br />
-          Are <strong>1 loc</strong>, <strong>2 uși</strong> și un <strong>range urban de 100 km</strong> chiar și cu sarcină maximă.<br />
-          Poate transporta până la <strong>390 kg</strong> fără efort.<br />
-          Încărcare completă de la 0% în <strong>doar 20 de minute la stațiile DC</strong> sau <strong>60 de minute la stațiile AC</strong>.<br />
-          Partenerul perfect pentru firme mici, curieri sau logistică eco.
+          Util și compact – AIGO T2 pentru livrări urbane:
+<strong> 1 loc</strong>, <strong>autonomie 100 km</strong>, <strong>sarcină utilă: 390 kg</strong>.<br />
+Încărcare completă în <strong>20 min DC</strong> sau <strong>60 min AC</strong>.<br />
+Ideal pentru firme, curieri sau transport urban eficient.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto mb-4">
           <img src="/DSC06968.JPG" className="rounded shadow" />
@@ -169,6 +165,17 @@ export default function App() {
           🚘 {t.reserve}
         </Link>
       </section>
+
+<section className="py-10 px-4 text-center">
+  <h2 className="text-2xl font-bold text-primary mb-4">Locații preluare mașini</h2>
+  <p className="text-gray-700 mb-4">După rezervare, poți prelua mașina din oricare dintre aceste locații:</p>
+  <ul className="space-y-2 text-sm text-blue-600 underline">
+    <li><a href="https://maps.app.goo.gl/UBQnH7kzRC5pEVLKA" target="_blank" rel="noopener noreferrer">Locație 1 - Google Maps</a></li>
+    <li><a href="https://maps.app.goo.gl/jeA3F2Sp2DTcU4Ta8" target="_blank" rel="noopener noreferrer">Locație 2 - Google Maps</a></li>
+    <li><a href="https://maps.app.goo.gl/ecacoCiTYjDnZDWT7" target="_blank" rel="noopener noreferrer">Locație 3 - Google Maps</a></li>
+  </ul>
+</section>
+
 
 <section id="contact" className="bg-white py-16 px-4 text-center">
         <h2 className="text-2xl font-bold text-primary mb-8">{t.contact}</h2>
