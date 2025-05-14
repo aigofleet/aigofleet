@@ -183,7 +183,7 @@ Ideal pentru firme, curieri sau transport urban eficient.
         <div className="max-w-xl mx-auto text-gray-700 space-y-3 text-sm leading-relaxed">
           <p><strong>Adresă:</strong> Str. Santuhalm, nr. 35A, Deva, Romania</p>
           <p><strong>Telefon:</strong> 0728283251 / 0721329588</p>
-          <p><strong>Email:</strong> <a href="mailto:office@aigofleet.com" className="text-primary hover:underline">aigofleet@gmail.com</a></p>
+          <p><strong>Email:</strong> <a href="mailto:office@aigofleet.com" className="text-primary hover:underline">office@aigofleet.com</a></p>
           <p><strong>Program:</strong> Luni–Sâmbătă, 8:00–18:00</p>
         </div>
         <div className="mt-6">
