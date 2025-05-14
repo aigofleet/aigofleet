@@ -43,6 +43,7 @@ export default function App() {
             <a href="#despre" className="hover:underline">{t.nav.about}</a>
             <a href="#masini" className="hover:underline">{t.nav.cars}</a>
             <a href="#contact" className="hover:underline">{t.nav.contact}</a>
+	    <a href="#termeni" className="hover:underline">Termeni si condiții</a>
             <Link to="/rezervare" className="bg-primary text-white px-3 py-1 rounded">{t.nav.reserve}</Link>
             <button onClick={toggleLang} className="underline text-primary">{t.nav.lang}</button>
           </nav>
@@ -190,19 +191,41 @@ Ideal pentru firme, curieri sau transport urban eficient.
         </div>
       </section>
 
-      <footer className="bg-primary text-white text-sm py-6 mt-12">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
-          <div className="flex items-center space-x-3">
-            <img src="/favicon.ico" className="w-8 h-8" alt="logo" />
-            <span className="font-semibold text-white">AIGO</span>
-          </div>
-          <div className="flex space-x-4 mt-2 md:mt-0">
-            <a href="#contact" className="hover:underline">{t.nav.contact}</a>
-            <a href="#despre" className="hover:underline">{t.nav.about}</a>
-            <a href="#masini" className="hover:underline">{t.nav.cars}</a>
-          </div>
-        </div>
-      </footer>
+<section id="termeni" className="py-16 px-4 bg-gray-50 text-gray-800">
+  <div className="max-w-3xl mx-auto text-center">
+    <h2 className="text-2xl font-bold text-primary mb-4">Termeni și Condiții</h2>
+    <p className="mb-4">
+      Înainte de a închiria un vehicul AIGO Fleet, te rugăm să citești cu atenție termenii și condițiile care guvernează utilizarea serviciului nostru.
+    </p>
+    <div className="text-left text-sm space-y-3">
+      <p>✅ Clientul trebuie să aibă cel puțin 18 ani și permis categoria B valabil.</p>
+      <p>✅ Închirierea este fără șofer, doar pentru utilizare urbană.</p>
+      <p>✅ Este interzis fumatul în vehicul – se aplică taxă de igienizare.</p>
+      <p>✅ Încărcarea se face doar cu cablul original – utilizarea altora atrage taxe tehnice.</p>
+      <p>✅ Daunele, neglijența, utilizarea greșită sau lipsa documentelor legale atrag răspundere integrală.</p>
+      <p>✅ Returnarea cu baterie sub nivelul inițial → taxă 1€/kWh.</p>
+      <p>✅ Cablul pierdut → taxă 500€.</p>
+      <p>✅ Detalii complete în pagina de rezervare și fișa de predare/preluare.</p>
+    </div>
+  </div>
+</section>
+
+<footer className="bg-primary text-white text-sm py-6 mt-12">
+  <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+    <div className="flex items-center space-x-3">
+      <img src="/favicon.ico" className="w-8 h-8" alt="logo" />
+      <span className="font-semibold text-white">AIGO</span>
+    </div>
+
+    <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 mt-4 md:mt-0 text-center md:text-left">
+      <a href="#contact" className="hover:underline">{t.nav.contact}</a>
+      <a href="#despre" className="hover:underline">{t.nav.about}</a>
+      <a href="#masini" className="hover:underline">{t.nav.cars}</a>
+      <a href="#termeni" className="hover:underline">Termeni și condiții</a>
+      <span className="text-white/80">&copy; {new Date().getFullYear()} AIGO Fleet</span>
+    </div>
+  </div>
+</footer>
 
     </main>
   );
