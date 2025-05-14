@@ -8,6 +8,7 @@ export default function App() {
   const [dataEnd, setDataEnd] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [price, setPrice] = useState(0);
+  const [garantie, setGarantie] = useState("standard");
   const [confirmMsg, setConfirmMsg] = useState("");
   const [consimtamant1, setConsimtamant1] = useState(false);
   const [consimtamant2, setConsimtamant2] = useState(false);
@@ -25,22 +26,36 @@ export default function App() {
     cash: "Cash la unitate"
   };
 
-  useEffect(() => {
-    if (dataStart && dataEnd && car) {
-      const days =
-        (new Date(dataEnd) - new Date(dataStart)) / (1000 * 60 * 60 * 24) + 1;
+useEffect(() => {
+  if (dataStart && dataEnd && car) {
+    const days =
+      (new Date(dataEnd) - new Date(dataStart)) / (1000 * 60 * 60 * 24) + 1;
 
-      let rate = 150;
-      if (car === "AIGO T2") rate = 200;
+    let rate = 150;
+    if (car === "AIGO T2") rate = 200;
 
-      let discount = 0;
-      if (days > 15) discount = 30;
-      else if (days > 6) discount = 20;
+    let discount = 0;
+    if (days > 15) discount = 30;
+    else if (days > 6) discount = 20;
 
-      const total = Math.max(days, 0) * (rate - discount);
-      setPrice(total);
+    let basePrice = Math.max(days, 0) * (rate - discount);
+
+    // Calcul pentru garanție
+    let garantieCost = 0;
+
+    if (garantie === "extinsa") garantieCost = 50 * days;
+    if (garantie === "premium") garantieCost = 100 * days;
+
+    // Dacă e fără acoperire și peste 6 zile → +25%
+    if (garantie === "standard" && days > 6) {
+      basePrice = basePrice * 1.25;
     }
-  }, [dataStart, dataEnd, car]);
+
+    const total = basePrice + garantieCost;
+    setPrice(Math.round(total));
+  }
+}, [dataStart, dataEnd, car, garantie]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,6 +72,7 @@ export default function App() {
     const masina = formData.get("masina");
     const zile =
       (new Date(dataEnd) - new Date(dataStart)) / (1000 * 60 * 60 * 24) + 1;
+    const tipGarantie = garantie;
 
     if (paymentMethod === "card") {
       try {
@@ -89,6 +105,7 @@ export default function App() {
             dataEnd,
             zile,
             pret: price,
+	    tipGarantie,
           },
           "0AYzL9_Wf0iCVRe7I"
         );
@@ -172,6 +189,53 @@ export default function App() {
             <option value="AIGO T2">AIGO T2</option>
           </select>
 
+<div className="text-left text-sm space-y-2 mt-4">
+  <label className="font-semibold block mb-2">Alege tipul de garanție:</label>
+
+  <label className="flex items-start space-x-2">
+    <input
+      type="radio"
+      name="garantie"
+      value="standard"
+      checked={garantie === "standard"}
+      onChange={() => setGarantie("standard")}
+    />
+    <span>
+      <strong>FĂRĂ ACOPERIRE</strong><br />
+      Riscul dumneavoastră în caz de daună sau furt este de 1000 lei.<br />
+      La închirierile de peste 6 zile → 25% din valoarea totală a închirierii.
+    </span>
+  </label>
+
+  <label className="flex items-start space-x-2">
+    <input
+      type="radio"
+      name="garantie"
+      value="extinsa"
+      checked={garantie === "extinsa"}
+      onChange={() => setGarantie("extinsa")}
+    />
+    <span>
+      <strong>EXTINSĂ +50 lei/zi</strong><br />
+      Riscul dumneavoastră în caz de daună sau furt este de 750 lei.
+    </span>
+  </label>
+
+  <label className="flex items-start space-x-2">
+    <input
+      type="radio"
+      name="garantie"
+      value="premium"
+      checked={garantie === "premium"}
+      onChange={() => setGarantie("premium")}
+    />
+    <span>
+      <strong>PREMIUM +100 lei/zi</strong><br />
+      Riscul dumneavoastră în caz de daună sau furt este de 250 lei.
+    </span>
+  </label>
+</div>
+
           <div className="text-left">
             <label className="font-semibold block mb-2">{t.paymentMethod}:</label>
             <label className="inline-flex items-center mr-4">
@@ -199,6 +263,15 @@ export default function App() {
           {price > 0 && (
             <div className="text-left font-semibold">Preț total: {price} lei</div>
           )}
+{garantie && (
+  <div className="text-left text-sm text-gray-700 mt-1">
+    Garanție selectată:{" "}
+    {garantie === "standard" && "FĂRĂ ACOPERIRE (0 lei/zi)"}
+    {garantie === "extinsa" && "EXTINSĂ (50 lei/zi)"}
+    {garantie === "premium" && "PREMIUM (100 lei/zi)"}
+  </div>
+)}
+
 <div className="text-left text-sm space-y-2">
   <label className="inline-flex items-start space-x-2">
     <input
@@ -235,8 +308,14 @@ export default function App() {
           >
             {t.submit}
           </button>
-        </form>
 
+        {confirmMsg && (
+          <div className="mt-4 p-3 bg-green-100 text-green-800 rounded">
+            {confirmMsg}
+          </div>
+        )}
+
+        </form>
 
 <section className="mt-12 text-left max-w-3xl mx-auto text-sm text-gray-800 leading-relaxed">
   <h2 className="text-xl font-bold text-primary mb-4">TERMENI ȘI CONDIȚII – AIGO FLEET</h2>
