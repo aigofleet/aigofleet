@@ -6,7 +6,7 @@ export default function App() {
   const [car, setCar] = useState("");
   const [dataStart, setDataStart] = useState("");
   const [dataEnd, setDataEnd] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("card");
+  const [paymentMethod, setPaymentMethod] = useState("cash");
   const [price, setPrice] = useState(0);
   const [garantie, setGarantie] = useState("standard");
   const [confirmMsg, setConfirmMsg] = useState("");
@@ -23,7 +23,7 @@ export default function App() {
     dateEnd: "Data sfârșit",
     paymentMethod: "Metodă de plată",
     card: "Card",
-    cash: "Cash la unitate"
+    cash: "Cash / Card la unitate"
   };
 
 useEffect(() => {
@@ -74,24 +74,25 @@ useEffect(() => {
       (new Date(dataEnd) - new Date(dataStart)) / (1000 * 60 * 60 * 24) + 1;
     const tipGarantie = garantie;
 
-    if (paymentMethod === "card") {
-      try {
-        const res = await fetch("http://localhost:4242/create-checkout-session", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, car: masina, price }),
-        });
-        const data = await res.json();
-        if (data.url) {
-          window.location.href = data.url;
-        } else {
-          alert("Eroare la inițializarea plății.");
-        }
-      } catch (err) {
-        console.error("Eroare la fetch:", err);
-        alert("A apărut o eroare la conectarea cu serverul.");
-      }
-    } else {
+    // if (paymentMethod === "card") {
+      // try {
+        // const res = await fetch("http://localhost:4242/create-checkout-session", {
+          // method: "POST",
+          // headers: { "Content-Type": "application/json" },
+         // body: JSON.stringify({ email, car: masina, price }),
+       // });
+        // const data = await res.json();
+        // if (data.url) {
+       //   window.location.href = data.url;
+        // } else {
+         // alert("Eroare la inițializarea plății.");
+        //}
+      // } catch (err) {
+      //  console.error("Eroare la fetch:", err);
+       // alert("A apărut o eroare la conectarea cu serverul.");
+     // }
+   // } 
+     // else {
       try {
         await emailjs.send(
           "service_ezznjce",
@@ -117,7 +118,7 @@ useEffect(() => {
         console.error("Eroare la trimiterea emailului:", err);
         alert("Nu s-a putut trimite emailul.");
       }
-    }
+   // }
   };
 
   return (
@@ -236,29 +237,24 @@ useEffect(() => {
   </label>
 </div>
 
-          <div className="text-left">
-            <label className="font-semibold block mb-2">{t.paymentMethod}:</label>
-            <label className="inline-flex items-center mr-4">
-              <input
-                type="radio"
-                name="payment"
-                value="card"
-                checked={paymentMethod === "card"}
-                onChange={() => setPaymentMethod("card")}
-              />
-              <span className="ml-2">{t.card}</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input
-                type="radio"
-                name="payment"
-                value="cash"
-                checked={paymentMethod === "cash"}
-                onChange={() => setPaymentMethod("cash")}
-              />
-              <span className="ml-2">{t.cash}</span>
-            </label>
-          </div>
+       
+
+
+<div className="text-left">
+  <label className="font-semibold block mb-2">{t.paymentMethod}:</label>
+  <label className="inline-flex items-center">
+    <input
+      type="radio"
+      name="payment"
+      value="cash"
+      checked={paymentMethod === "cash"}
+      onChange={() => setPaymentMethod("cash")}
+    />
+    <span className="ml-2">{t.cash}</span>
+  </label>
+</div>
+
+
 
           {price > 0 && (
             <div className="text-left font-semibold">Preț total: {price} lei</div>
