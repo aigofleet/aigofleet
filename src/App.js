@@ -1,6 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+
+
+
+const CookieBanner = () => {
+  const [accepted, setAccepted] = React.useState(localStorage.getItem("aigo_cookie_accepted"));
+
+  const acceptCookies = () => {
+    localStorage.setItem("aigo_cookie_accepted", "true");
+    setAccepted(true);
+  };
+
+  if (accepted) return null;
+
+  return (
+    <div className="fixed bottom-0 w-full bg-gray-900 text-white text-sm p-4 flex flex-col sm:flex-row sm:justify-between items-center z-50">
+      <span className="mb-2 sm:mb-0">Folosim cookies pentru a îmbunătăți experiența pe site. Continuarea navigării implică acceptul tău.</span>
+      <button
+        onClick={acceptCookies}
+        className="bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition"
+      >
+        Accept
+      </button>
+    </div>
+  );
+};
+
+
+
+
+
+
+
+
+
+
 const translations = {
   ro: {
     title: "Închiriază inteligent cu AIGO",
@@ -226,6 +261,12 @@ Ideal pentru firme, curieri sau transport urban eficient.
     </div>
   </div>
 </footer>
+
+
+
+<CookieBanner />
+
+
 
     </main>
   );
